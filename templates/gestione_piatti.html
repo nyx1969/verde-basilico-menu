@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gestione Piatti - Verde Basilico</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .categoria {
+            margin-bottom: 30px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .categoria h2 {
+            color: #2c5530;
+            margin-top: 0;
+        }
+        input[type="text"] {
+            width: 300px;
+            padding: 8px;
+            margin: 5px 0;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+        button {
+            background-color: #2c5530;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background-color: #1e3a21;
+        }
+        button.rimuovi {
+            background-color: #953735;
+        }
+        button.rimuovi:hover {
+            background-color: #6d2826;
+        }
+        .piatto-item {
+            display: flex;
+            align-items: center;
+            margin: 5px 0;
+        }
+        .piatto-item span {
+            flex-grow: 1;
+            margin-right: 10px;
+        }
+        h1 {
+            color: #2c5530;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .nav-buttons {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .nav-buttons a {
+            display: inline-block;
+            background-color: #2c5530;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 4px;
+            margin: 0 10px;
+        }
+        .nav-buttons a:hover {
+            background-color: #1e3a21;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-buttons">
+        <a href="/">Torna al Menu Settimanale</a>
+    </div>
+    
+    <h1>Gestione Piatti</h1>
+
+    <div class="categoria">
+        <h2>Antipasti</h2>
+        <form action="/aggiungi-piatto" method="POST">
+            <input type="hidden" name="categoria" value="antipasti">
+            <input type="text" name="piatto" placeholder="Nuovo antipasto..." required>
+            <button type="submit">Aggiungi</button>
+        </form>
+        {% for piatto in piatti.antipasti %}
+        <div class="piatto-item">
+            <span>{{ piatto }}</span>
+            <form action="/rimuovi-piatto" method="POST" style="display: inline;">
+                <input type="hidden" name="categoria" value="antipasti">
+                <input type="hidden" name="piatto" value="{{ piatto }}">
+                <button type="submit" class="rimuovi">Rimuovi</button>
+            </form>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="categoria">
+        <h2>Primi Piatti</h2>
+        <form action="/aggiungi-piatto" method="POST">
+            <input type="hidden" name="categoria" value="zuppe_e_primi">
+            <input type="text" name="piatto" placeholder="Nuovo primo piatto..." required>
+            <button type="submit">Aggiungi</button>
+        </form>
+        {% for piatto in piatti.zuppe_e_primi %}
+        <div class="piatto-item">
+            <span>{{ piatto }}</span>
+            <form action="/rimuovi-piatto" method="POST" style="display: inline;">
+                <input type="hidden" name="categoria" value="zuppe_e_primi">
+                <input type="hidden" name="piatto" value="{{ piatto }}">
+                <button type="submit" class="rimuovi">Rimuovi</button>
+            </form>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="categoria">
+        <h2>Secondi Piatti</h2>
+        <form action="/aggiungi-piatto" method="POST">
+            <input type="hidden" name="categoria" value="secondi">
+            <input type="text" name="piatto" placeholder="Nuovo secondo piatto..." required>
+            <button type="submit">Aggiungi</button>
+        </form>
+        {% for piatto in piatti.secondi %}
+        <div class="piatto-item">
+            <span>{{ piatto }}</span>
+            <form action="/rimuovi-piatto" method="POST" style="display: inline;">
+                <input type="hidden" name="categoria" value="secondi">
+                <input type="hidden" name="piatto" value="{{ piatto }}">
+                <button type="submit" class="rimuovi">Rimuovi</button>
+            </form>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="categoria">
+        <h2>Contorni</h2>
+        <form action="/aggiungi-piatto" method="POST">
+            <input type="hidden" name="categoria" value="contorni">
+            <input type="text" name="piatto" placeholder="Nuovo contorno..." required>
+            <button type="submit">Aggiungi</button>
+        </form>
+        {% for piatto in piatti.contorni %}
+        <div class="piatto-item">
+            <span>{{ piatto }}</span>
+            <form action="/rimuovi-piatto" method="POST" style="display: inline;">
+                <input type="hidden" name="categoria" value="contorni">
+                <input type="hidden" name="piatto" value="{{ piatto }}">
+                <button type="submit" class="rimuovi">Rimuovi</button>
+            </form>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

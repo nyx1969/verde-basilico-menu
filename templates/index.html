@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Menu di Verde Basilico</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .giorno {
+            margin-bottom: 30px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .giorno h2 {
+            color: #2c5530;  /* Verde scuro */
+            margin-top: 0;
+        }
+        select {
+            width: 300px;
+            padding: 8px;
+            margin: 5px 0;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+        .piatto {
+            margin: 10px 0;
+        }
+        button, .button {
+            background-color: #2c5530;  /* Verde scuro */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+            text-decoration: none;
+            display: inline-block;
+        }
+        button:hover, .button:hover {
+            background-color: #1e3a21;
+        }
+        h1 {
+            color: #2c5530;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .nav-buttons {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-buttons">
+        <a href="/gestione-piatti" class="button">Gestisci Lista Piatti</a>
+    </div>
+    <h1>Menu Settimanale Verde Basilico</h1>
+    <form action="/menu" method="POST">
+        {% for giorno in giorni %}
+        <div class="giorno">
+            <h2>{{ giorno }}</h2>
+            <div class="piatto">
+                <h3>Antipasto o Insalata (opzionale)</h3>
+                <select name="antipasto_{{ giorno }}">
+                    <option value="">-- Nessuna selezione --</option>
+                    {% for piatto in antipasti %}
+                        <option value="{{ piatto }}">{{ piatto }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="piatto">
+                <h3>Primo Piatto (opzionale)</h3>
+                <select name="primo_{{ giorno }}">
+                    <option value="">-- Nessuna selezione --</option>
+                    {% for piatto in zuppe_e_primi %}
+                        <option value="{{ piatto }}">{{ piatto }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="piatto">
+                <h3>Secondo Piatto (opzionale)</h3>
+                <select name="secondo_{{ giorno }}">
+                    <option value="">-- Nessuna selezione --</option>
+                    {% for piatto in secondi %}
+                        <option value="{{ piatto }}">{{ piatto }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="piatto">
+                <h3>Contorno (opzionale)</h3>
+                <select name="contorno_{{ giorno }}">
+                    <option value="">-- Nessuna selezione --</option>
+                    {% for piatto in contorni %}
+                        <option value="{{ piatto }}">{{ piatto }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        {% endfor %}
+        <div style="text-align: center;">
+            <button type="submit">Genera PDF Menu Settimanale</button>
+        </div>
+    </form>
+</body>
+</html>

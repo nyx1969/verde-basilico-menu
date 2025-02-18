@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+dist/
+build/
+*.spec
+
+# Environment
+.env
+.venv
+env/
+venv/
+ENV/
+
+# Generated files
+*.pdf

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Menu Generato - Verde Basilico</title>
+</head>
+<body>
+    <h1>Menu del Giorno</h1>
+    {% if antipasto %}
+    <div>
+        <h2>Antipasto</h2>
+        <p>{{ antipasto }}</p>
+    </div>
+    {% endif %}
+    {% if primo %}
+    <div>
+        <h2>Primo Piatto</h2>
+        <p>{{ primo }}</p>
+    </div>
+    {% endif %}
+    {% if secondo %}
+    <div>
+        <h2>Secondo Piatto</h2>
+        <p>{{ secondo }}</p>
+    </div>
+    {% endif %}
+    {% if contorno %}
+    <div>
+        <h2>Contorno</h2>
+        <p>{{ contorno }}</p>
+    </div>
+    {% endif %}
+    <br>
+    <a href="/">Torna alla pagina iniziale</a>
+</body>
+</html>
